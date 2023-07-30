@@ -2,7 +2,7 @@
 
 class Conexion
 {
-  static public function contactar()
+  static public function conectar()
   {
     $link = new PDO(
       "mysql:host=localhost;dbname=essence-master",

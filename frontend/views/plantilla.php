@@ -1,6 +1,8 @@
 <?php
 $frontend = Ruta::frontend();
 $backend = Ruta::backend();
+$comercio = ControladorPlantilla::ctrMostrarDivisa();
+$divisa = $comercio['divisa'];
 ?>
 <!DOCTYPE html>
 <html lang="ex">

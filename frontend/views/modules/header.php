@@ -1,3 +1,8 @@
+<?php
+$item = null;
+$valor = null;
+$categorias = ControladorProductos::ctrMostrarCategorias($item, $valor);
+?>
 <!-- ##### Header Area Start ##### -->
 <header class="header_area">
   <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
@@ -23,33 +28,21 @@
             <li>
               <a href="#">Tienda</a>
               <div class="megamenu">
-                <ul class="single-mega cn-col-4">
-                  <li class="title">Women's Collection</li>
-                  <li><a href="shop.html">Dresses</a></li>
-                  <li><a href="shop.html">Blouses &amp; Shirts</a></li>
-                  <li><a href="shop.html">T-shirts</a></li>
-                  <li><a href="shop.html">Rompers</a></li>
-                  <li><a href="shop.html">Bras &amp; Panties</a></li>
-                </ul>
-                <ul class="single-mega cn-col-4">
-                  <li class="title">Men's Collection</li>
-                  <li><a href="shop.html">T-Shirts</a></li>
-                  <li><a href="shop.html">Polo</a></li>
-                  <li><a href="shop.html">Shirts</a></li>
-                  <li><a href="shop.html">Jackets</a></li>
-                  <li><a href="shop.html">Trench</a></li>
-                </ul>
-                <ul class="single-mega cn-col-4">
-                  <li class="title">Kid's Collection</li>
-                  <li><a href="shop.html">Dresses</a></li>
-                  <li><a href="shop.html">Shirts</a></li>
-                  <li><a href="shop.html">T-shirts</a></li>
-                  <li><a href="shop.html">Jackets</a></li>
-                  <li><a href="shop.html">Trench</a></li>
-                </ul>
-                <div class="single-mega cn-col-4">
-                  <img src="views/img/bg-img/bg-6.jpg" alt="" />
-                </div>
+
+                <?php foreach ($categorias as $key => $value) : ?>
+                  <ul class="single-mega cn-col-3">
+                    <li class="title"><?= $value['categoria'] ?></li>
+                    <?php
+                    $item = 'id_categoria';
+                    $valor = $value['id'];
+                    $subCategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
+                    ?>
+
+                    <?php foreach ($subCategorias as $key => $value) : ?>
+                      <li><a href="<?= $frontend . $value['ruta'] ?>"><?= $value['subcategoria'] ?></a></li>
+                    <?php endforeach ?>
+                  </ul>
+                <?php endforeach ?>
               </div>
             </li>
             <li>
